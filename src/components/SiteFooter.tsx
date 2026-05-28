@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Instagram, Facebook, MapPin, Phone, Mail } from "lucide-react";
+import { MapPin, Phone, Mail } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 export function SiteFooter() {
@@ -38,9 +38,9 @@ export function SiteFooter() {
               <li><Link to="/membership" className="hover:text-accent">Membership</Link></li>
               <li><Link to="/contact" className="hover:text-accent">Book a Safari</Link></li>
             </ul>
-            <div className="flex gap-3 mt-6">
-              <a href="#" aria-label="Instagram" className="h-9 w-9 grid place-items-center border border-accent/40 hover:bg-accent hover:text-accent-foreground transition"><Instagram className="h-4 w-4" /></a>
-              <a href="#" aria-label="Facebook" className="h-9 w-9 grid place-items-center border border-accent/40 hover:bg-accent hover:text-accent-foreground transition"><Facebook className="h-4 w-4" /></a>
+            <div className="flex gap-3 mt-6 text-[10px] tracking-[0.3em] uppercase">
+              <a href="#" className="px-3 py-2 border border-accent/40 hover:bg-accent hover:text-accent-foreground transition">Instagram</a>
+              <a href="#" className="px-3 py-2 border border-accent/40 hover:bg-accent hover:text-accent-foreground transition">Facebook</a>
             </div>
           </div>
         </div>
