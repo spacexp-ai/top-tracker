@@ -6,6 +6,18 @@ import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Reveal } from "@/components/Reveal";
 import { Eyebrow } from "@/components/Eyebrow";
+import { FloatingTracks } from "@/components/FloatingTracks";
+import {
+  AnimatedIcon,
+  LionIcon,
+  ElephantIcon,
+  BuffaloIcon,
+  LeopardIcon,
+  AntelopeIcon,
+  RifleIcon,
+  CompassRoseIcon,
+  AcaciaIcon,
+} from "@/components/WildlifeIcons";
 import hero from "@/assets/hero-savanna.jpg";
 import camp from "@/assets/camp.jpg";
 import experience from "@/assets/experience.jpg";
