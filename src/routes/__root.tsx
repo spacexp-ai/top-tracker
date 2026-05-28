@@ -9,7 +9,6 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
-import { LogoSplash } from "@/components/LogoSplash";
 
 function NotFoundComponent() {
   return (
@@ -47,10 +46,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Top Trackers — Premium Hunting Club, Tanzania" },
       { name: "description", content: "An invitation-only African safari & hunting club rooted in Tanzania. Ethical hunts, conservation heritage, and unforgettable expeditions." },
-      { property: "og:title", content: "Top Trackers — Premium Hunting Club" },
-      { property: "og:description", content: "Africa's premier hunting experience. Ethical hunting, conservation heritage, unforgettable expeditions." },
+      { property: "og:title", content: "Top Trackers — Premium Hunting Club, Tanzania" },
+      { property: "og:description", content: "An invitation-only African safari & hunting club rooted in Tanzania. Ethical hunts, conservation heritage, and unforgettable expeditions." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Top Trackers — Premium Hunting Club, Tanzania" },
+      { name: "twitter:description", content: "An invitation-only African safari & hunting club rooted in Tanzania. Ethical hunts, conservation heritage, and unforgettable expeditions." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/JyGsTAOQ23TQxYWaD0RvuQ1Yn9A2/social-images/social-1779975367064-f5a3388c-7776-44e0-92d7-55cf79b6b35a-2026-05-16.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/JyGsTAOQ23TQxYWaD0RvuQ1Yn9A2/social-images/social-1779975367064-f5a3388c-7776-44e0-92d7-55cf79b6b35a-2026-05-16.webp" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -83,7 +86,6 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   return (
     <QueryClientProvider client={queryClient}>
-      <LogoSplash />
       <Outlet />
     </QueryClientProvider>
   );
