@@ -38,7 +38,15 @@ function Home() {
       {/* HERO */}
       <section ref={heroRef} className="relative h-[100svh] overflow-hidden bg-ink">
         <motion.div style={{ y }} className="absolute inset-0">
-          <img src={hero} alt="" width={1920} height={1280} className="w-full h-[120%] object-cover opacity-90" />
+          <video
+            src="/media/hero-intro.mp4"
+            poster={hero}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-[120%] object-cover opacity-90"
+          />
           <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/30 to-ink/95" />
         </motion.div>
 
@@ -58,20 +66,19 @@ function Home() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.2 }}
-            className="font-display text-bone text-[12vw] md:text-[7.5vw] leading-[0.95] max-w-6xl"
+            className="font-display text-bone text-[18vw] md:text-[10vw] leading-[0.95] max-w-6xl"
           >
-            Africa's<br />
-            <span className="italic font-serif text-accent">premier</span> hunt
+            <span className="italic font-serif text-accent">Welcome</span>.
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.5, delay: 0.8 }}
-            className="mt-8 max-w-xl text-bone/80 font-serif text-xl tracking-wide"
+            className="mt-8 max-w-2xl text-bone/80 font-serif text-xl md:text-2xl tracking-wide"
           >
-            Ethical hunting. Conservation heritage. Unforgettable expeditions —
-            shaped by patience, craft, and respect.
+            To Africa's premier hunting club — where the chase is shaped by
+            patience, craft, and respect.
           </motion.p>
 
           <motion.div
@@ -81,16 +88,16 @@ function Home() {
             className="mt-10 flex flex-wrap gap-4 justify-center"
           >
             <Link
-              to="/membership"
+              to="/estimator"
               className="group inline-flex items-center gap-3 px-8 py-4 bg-accent text-accent-foreground tracking-[0.3em] text-[11px] uppercase font-medium hover:bg-ember hover:text-bone transition-all"
             >
-              Join the Club <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              Estimate your safari <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
-              to="/our-story"
+              to="/membership"
               className="inline-flex items-center gap-3 px-8 py-4 border border-bone/40 text-bone tracking-[0.3em] text-[11px] uppercase hover:border-accent hover:text-accent transition-all"
             >
-              Our Legacy
+              Join the Club
             </Link>
           </motion.div>
         </motion.div>

@@ -4,10 +4,12 @@ import { Menu, X } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 const links = [
-  { to: "/", label: "Home" },
+  { to: "/", label: "Welcome" },
   { to: "/our-story", label: "Our Story" },
   { to: "/experience", label: "The Experience" },
   { to: "/membership", label: "Membership" },
+  { to: "/journal", label: "Journal" },
+  { to: "/estimator", label: "Estimator" },
   { to: "/contact", label: "Contact" },
 ];
 

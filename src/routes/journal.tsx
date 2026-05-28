@@ -1,0 +1,144 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { motion } from "framer-motion";
+import { ArrowUpRight, Calendar } from "lucide-react";
+import { SiteNav } from "@/components/SiteNav";
+import { SiteFooter } from "@/components/SiteFooter";
+import { Reveal } from "@/components/Reveal";
+import { Eyebrow } from "@/components/Eyebrow";
+import wildlife from "@/assets/wildlife.jpg";
+import camp from "@/assets/camp.jpg";
+import experience from "@/assets/experience.jpg";
+import hero from "@/assets/hero-savanna.jpg";
+
+export const Route = createFileRoute("/journal")({
+  head: () => ({
+    meta: [
+      { title: "Field Journal — Top Trackers" },
+      { name: "description", content: "Dispatches from the bush: tracking notes, conservation reports, and stories from Top Trackers camps." },
+      { property: "og:title", content: "Field Journal — Top Trackers" },
+      { property: "og:description", content: "Tracking notes, conservation reports, and stories from the bush." },
+    ],
+  }),
+  component: Journal,
+});
+
+const entries = [
+  {
+    title: "The long wait for the Iringa buffalo",
+    excerpt: "Eleven days under acacia and a wind that never settled. Patience is the only currency the old bulls accept.",
+    date: "March 14, 2026",
+    tag: "Field Notes",
+    image: experience,
+    read: "8 min",
+  },
+  {
+    title: "Why we counted the lions before we sold a hunt",
+    excerpt: "Our annual census in the Selous block, and what the numbers told us about quota, prey, and the price of restraint.",
+    date: "February 02, 2026",
+    tag: "Conservation",
+    image: wildlife,
+    read: "12 min",
+  },
+  {
+    title: "Brass, canvas, and the lost art of camp",
+    excerpt: "A walk through Esilalei base camp with the canvas-master who has stitched our tents for thirty seasons.",
+    date: "January 18, 2026",
+    tag: "Camp Life",
+    image: camp,
+    read: "6 min",
+  },
+  {
+    title: "Maasai Steppe — a season in dispatches",
+    excerpt: "Six members, two professional hunters, one impossible kudu. Recollections from the 2025 driven weekend.",
+    date: "December 06, 2025",
+    tag: "Expedition",
+    image: hero,
+    read: "10 min",
+  },
+];
+
+function Journal() {
+  return (
+    <div className="min-h-screen bg-background">
+      <SiteNav />
+
+      <section className="relative h-[52svh] bg-ink overflow-hidden">
+        <motion.img
+          src={experience}
+          alt=""
+          initial={{ scale: 1.15 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 8, ease: "easeOut" }}
+          className="absolute inset-0 w-full h-full object-cover opacity-40"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink/40 to-ink" />
+        <div className="relative h-full flex flex-col items-center justify-center text-center px-6 text-bone">
+          <Eyebrow light>Dispatches from the bush</Eyebrow>
+          <h1 className="mt-6 font-display text-5xl md:text-7xl">
+            The <span className="italic font-serif text-accent">Field Journal</span>
+          </h1>
+          <p className="mt-6 max-w-2xl font-serif text-xl text-bone/75">
+            Tracking notes, conservation reports, and unhurried stories — written in the bush, edited by lantern light.
+          </p>
+        </div>
+      </section>
+
+      <section className="paper-bg py-28">
+        <div className="mx-auto max-w-6xl px-6 space-y-10">
+          {entries.map((e, i) => (
+            <Reveal key={e.title} delay={i * 0.05}>
+              <motion.article
+                whileHover={{ y: -4 }}
+                transition={{ type: "spring", stiffness: 200, damping: 18 }}
+                className="group grid md:grid-cols-5 gap-8 items-center bg-card p-6 md:p-8 border border-border hover:border-accent transition-colors"
+              >
+                <div className="md:col-span-2 overflow-hidden">
+                  <motion.img
+                    src={e.image}
+                    alt={e.title}
+                    loading="lazy"
+                    className="w-full aspect-[4/3] object-cover"
+                    whileHover={{ scale: 1.06 }}
+                    transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                  />
+                </div>
+                <div className="md:col-span-3">
+                  <div className="flex items-center gap-4 text-[10px] tracking-[0.3em] uppercase text-accent">
+                    <span>{e.tag}</span>
+                    <span className="h-px flex-1 bg-border" />
+                    <span className="inline-flex items-center gap-1 text-muted-foreground"><Calendar className="h-3 w-3" />{e.date}</span>
+                  </div>
+                  <h2 className="mt-4 font-display text-2xl md:text-3xl text-forest group-hover:text-ember transition-colors leading-tight">
+                    {e.title}
+                  </h2>
+                  <p className="mt-4 font-serif text-lg text-foreground/75 leading-relaxed">{e.excerpt}</p>
+                  <div className="mt-6 flex items-center justify-between">
+                    <span className="text-xs text-muted-foreground tracking-widest uppercase">{e.read} read</span>
+                    <span className="inline-flex items-center gap-2 text-forest group-hover:text-ember text-[11px] tracking-[0.3em] uppercase">
+                      Read entry <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </span>
+                  </div>
+                </div>
+              </motion.article>
+            </Reveal>
+          ))}
+
+          <Reveal>
+            <div className="mt-16 p-10 border border-accent/40 bg-ink text-bone text-center">
+              <Eyebrow light>Subscribe</Eyebrow>
+              <h3 className="mt-4 font-display text-3xl">The quarterly field journal — by post.</h3>
+              <p className="mt-4 font-serif text-bone/70 max-w-xl mx-auto">
+                Members receive the printed edition four times a year. Add your address to the waiting list.
+              </p>
+              <Link to="/contact" className="inline-flex mt-8 items-center gap-2 px-7 py-3.5 bg-accent text-accent-foreground tracking-[0.3em] text-[11px] uppercase hover:bg-ember hover:text-bone transition">
+                Request the Journal
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <SiteFooter />
+    </div>
+  );
+}

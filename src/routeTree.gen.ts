@@ -12,7 +12,9 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as OurStoryRouteImport } from './routes/our-story'
 import { Route as MembershipRouteImport } from './routes/membership'
+import { Route as JournalRouteImport } from './routes/journal'
 import { Route as ExperienceRouteImport } from './routes/experience'
+import { Route as EstimatorRouteImport } from './routes/estimator'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -31,9 +33,19 @@ const MembershipRoute = MembershipRouteImport.update({
   path: '/membership',
   getParentRoute: () => rootRouteImport,
 } as any)
+const JournalRoute = JournalRouteImport.update({
+  id: '/journal',
+  path: '/journal',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ExperienceRoute = ExperienceRouteImport.update({
   id: '/experience',
   path: '/experience',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EstimatorRoute = EstimatorRouteImport.update({
+  id: '/estimator',
+  path: '/estimator',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -50,7 +62,9 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/estimator': typeof EstimatorRoute
   '/experience': typeof ExperienceRoute
+  '/journal': typeof JournalRoute
   '/membership': typeof MembershipRoute
   '/our-story': typeof OurStoryRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -58,7 +72,9 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/estimator': typeof EstimatorRoute
   '/experience': typeof ExperienceRoute
+  '/journal': typeof JournalRoute
   '/membership': typeof MembershipRoute
   '/our-story': typeof OurStoryRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -67,7 +83,9 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/estimator': typeof EstimatorRoute
   '/experience': typeof ExperienceRoute
+  '/journal': typeof JournalRoute
   '/membership': typeof MembershipRoute
   '/our-story': typeof OurStoryRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -77,7 +95,9 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/contact'
+    | '/estimator'
     | '/experience'
+    | '/journal'
     | '/membership'
     | '/our-story'
     | '/sitemap.xml'
@@ -85,7 +105,9 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/contact'
+    | '/estimator'
     | '/experience'
+    | '/journal'
     | '/membership'
     | '/our-story'
     | '/sitemap.xml'
@@ -93,7 +115,9 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/contact'
+    | '/estimator'
     | '/experience'
+    | '/journal'
     | '/membership'
     | '/our-story'
     | '/sitemap.xml'
@@ -102,7 +126,9 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContactRoute: typeof ContactRoute
+  EstimatorRoute: typeof EstimatorRoute
   ExperienceRoute: typeof ExperienceRoute
+  JournalRoute: typeof JournalRoute
   MembershipRoute: typeof MembershipRoute
   OurStoryRoute: typeof OurStoryRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -131,11 +157,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MembershipRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/journal': {
+      id: '/journal'
+      path: '/journal'
+      fullPath: '/journal'
+      preLoaderRoute: typeof JournalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/experience': {
       id: '/experience'
       path: '/experience'
       fullPath: '/experience'
       preLoaderRoute: typeof ExperienceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/estimator': {
+      id: '/estimator'
+      path: '/estimator'
+      fullPath: '/estimator'
+      preLoaderRoute: typeof EstimatorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -158,7 +198,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContactRoute: ContactRoute,
+  EstimatorRoute: EstimatorRoute,
   ExperienceRoute: ExperienceRoute,
+  JournalRoute: JournalRoute,
   MembershipRoute: MembershipRoute,
   OurStoryRoute: OurStoryRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
