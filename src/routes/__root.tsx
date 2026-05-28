@@ -9,6 +9,8 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import { LogoSplash } from "@/components/LogoSplash";
+import { WildlifePopup } from "@/components/WildlifePopup";
 
 function NotFoundComponent() {
   return (
@@ -86,7 +88,9 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   return (
     <QueryClientProvider client={queryClient}>
+      <LogoSplash />
       <Outlet />
+      <WildlifePopup />
     </QueryClientProvider>
   );
 }

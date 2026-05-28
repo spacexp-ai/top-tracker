@@ -6,6 +6,18 @@ import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Reveal } from "@/components/Reveal";
 import { Eyebrow } from "@/components/Eyebrow";
+import { FloatingTracks } from "@/components/FloatingTracks";
+import {
+  AnimatedIcon,
+  LionIcon,
+  ElephantIcon,
+  BuffaloIcon,
+  LeopardIcon,
+  AntelopeIcon,
+  RifleIcon,
+  CompassRoseIcon,
+  AcaciaIcon,
+} from "@/components/WildlifeIcons";
 import hero from "@/assets/hero-savanna.jpg";
 import camp from "@/assets/camp.jpg";
 import experience from "@/assets/experience.jpg";
@@ -143,6 +155,7 @@ function Home() {
 
       {/* PILLARS */}
       <section className="relative bg-ink text-bone py-32 overflow-hidden grain">
+        <FloatingTracks count={8} />
         <div className="relative mx-auto max-w-7xl px-6">
           <Reveal>
             <Eyebrow light>Three pillars</Eyebrow>
@@ -166,6 +179,55 @@ function Home() {
                   <p className="mt-4 font-serif text-lg text-bone/70 leading-relaxed">{body}</p>
                 </div>
               </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* BESTIARY — interactive hover icons */}
+      <section className="relative paper-bg py-28 overflow-hidden">
+        <FloatingTracks count={5} />
+        <div className="relative mx-auto max-w-7xl px-6">
+          <div className="text-center max-w-2xl mx-auto">
+            <Reveal><Eyebrow>The Field Bestiary</Eyebrow></Reveal>
+            <Reveal delay={0.1}>
+              <h2 className="mt-6 font-display text-4xl md:text-5xl text-forest leading-tight">
+                Hover the quarry.<br />
+                <span className="font-serif italic text-ember">Read the trail.</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p className="mt-6 font-serif text-lg text-foreground/70">
+                Eight icons drawn from camp ledgers — wildlife, weather, tools of the chase.
+                Touch one to read its line.
+              </p>
+            </Reveal>
+          </div>
+
+          <div className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-px bg-forest/15">
+            {[
+              { Icon: LionIcon, label: "Lion", note: "Tracked at dawn — never alone." },
+              { Icon: ElephantIcon, label: "Elephant", note: "Respect the matriarch's wind." },
+              { Icon: BuffaloIcon, label: "Buffalo", note: "Black death of the Selous." },
+              { Icon: LeopardIcon, label: "Leopard", note: "Patience baited under acacia." },
+              { Icon: AntelopeIcon, label: "Kudu", note: "Spiral horns through the thornveld." },
+              { Icon: RifleIcon, label: "The Rifle", note: ".375 H&H — the old reliable." },
+              { Icon: CompassRoseIcon, label: "Bearing", note: "True north, by sun and stars." },
+              { Icon: AcaciaIcon, label: "Acacia", note: "Camp shade. Lantern post." },
+            ].map(({ Icon, label, note }, i) => (
+              <AnimatedIcon key={label} delay={i * 0.06}>
+                <div className="group bg-bone hover:bg-forest transition-colors duration-500 p-8 h-44 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                  <div className="text-forest group-hover:text-accent transition-colors duration-500">
+                    <Icon size={56} />
+                  </div>
+                  <div className="mt-3 font-display text-sm tracking-[0.3em] uppercase text-forest group-hover:text-bone transition-colors">
+                    {label}
+                  </div>
+                  <div className="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-500 bg-forest text-bone/85 font-serif italic text-sm py-3 px-2">
+                    {note}
+                  </div>
+                </div>
+              </AnimatedIcon>
             ))}
           </div>
         </div>
