@@ -155,6 +155,7 @@ function Home() {
 
       {/* PILLARS */}
       <section className="relative bg-ink text-bone py-32 overflow-hidden grain">
+        <FloatingTracks count={8} />
         <div className="relative mx-auto max-w-7xl px-6">
           <Reveal>
             <Eyebrow light>Three pillars</Eyebrow>
