@@ -138,6 +138,45 @@ function Journal() {
         </div>
       </section>
 
+      {/* PHOTO JOURNAL / GALLERY */}
+      <section className="relative bg-ink text-bone py-24 overflow-hidden">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+            <div>
+              <Eyebrow light>Photo journal</Eyebrow>
+              <h2 className="mt-4 font-display text-3xl md:text-5xl">
+                Frames from the <span className="italic font-serif text-accent">bush.</span>
+              </h2>
+            </div>
+            <p className="font-serif italic text-bone/60 max-w-md">A rotating gallery of stills from camp, concession, and chase — shot on film, scanned at the kitchen table.</p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[180px] md:auto-rows-[220px] gap-3">
+            {[
+              { src: experience, span: "row-span-2" },
+              { src: wildlife, span: "" },
+              { src: camp, span: "" },
+              { src: hero, span: "row-span-2 col-span-2" },
+              { src: wildlife, span: "" },
+              { src: camp, span: "" },
+              { src: experience, span: "col-span-2" },
+              { src: hero, span: "" },
+            ].map((t, i) => (
+              <motion.figure
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05, duration: 0.6 }}
+                whileHover={{ scale: 1.02 }}
+                className={`overflow-hidden bg-bone/5 ${t.span}`}
+              >
+                <img src={t.src} alt="" loading="lazy" className="w-full h-full object-cover transition-transform duration-700 hover:scale-110" />
+              </motion.figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <SiteFooter />
     </div>
   );

@@ -11,6 +11,7 @@ import {
 import appCss from "../styles.css?url";
 import { LogoSplash } from "@/components/LogoSplash";
 import { WildlifePopup } from "@/components/WildlifePopup";
+import { CookieConsent } from "@/components/CookieConsent";
 
 function NotFoundComponent() {
   return (
@@ -91,6 +92,7 @@ function RootComponent() {
       <LogoSplash />
       <Outlet />
       <WildlifePopup />
+      <CookieConsent />
     </QueryClientProvider>
   );
 }

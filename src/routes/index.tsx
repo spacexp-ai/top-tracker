@@ -7,6 +7,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { Reveal } from "@/components/Reveal";
 import { Eyebrow } from "@/components/Eyebrow";
 import { FloatingTracks } from "@/components/FloatingTracks";
+import { InstagramFeed } from "@/components/InstagramFeed";
 import {
   AnimatedIcon,
   LionIcon,
@@ -100,10 +101,10 @@ function Home() {
             className="mt-10 flex flex-wrap gap-4 justify-center"
           >
             <Link
-              to="/estimator"
+              to="/contact"
               className="group inline-flex items-center gap-3 px-8 py-4 bg-accent text-accent-foreground tracking-[0.3em] text-[11px] uppercase font-medium hover:bg-ember hover:text-bone transition-all"
             >
-              Estimate your safari <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              Book your safari <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
               to="/membership"
@@ -416,6 +417,7 @@ function Home() {
         </div>
       </section>
 
+      <InstagramFeed />
       <SiteFooter />
     </div>
   );
