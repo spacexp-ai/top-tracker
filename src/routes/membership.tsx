@@ -105,7 +105,7 @@ function Membership() {
                     <li key={p} className="flex gap-3"><Check className="h-4 w-4 text-ember shrink-0 mt-0.5" /><span>{p}</span></li>
                   ))}
                 </ul>
-                <Link to="/contact" className={`mt-10 inline-flex w-full justify-center items-center gap-2 px-6 py-3.5 tracking-[0.3em] text-[11px] uppercase transition ${t.featured ? "bg-ember text-bone hover:bg-forest" : "border border-forest text-forest hover:bg-forest hover:text-bone"}`}>
+                <Link to="/membership-apply" className={`mt-10 inline-flex w-full justify-center items-center gap-2 px-6 py-3.5 tracking-[0.3em] text-[11px] uppercase transition ${t.featured ? "bg-ember text-bone hover:bg-forest" : "border border-forest text-forest hover:bg-forest hover:text-bone"}`}>
                   Apply <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>

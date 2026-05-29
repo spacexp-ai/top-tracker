@@ -9,23 +9,51 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as PartnersRouteImport } from './routes/partners'
 import { Route as OurStoryRouteImport } from './routes/our-story'
+import { Route as MembershipApplyRouteImport } from './routes/membership-apply'
 import { Route as MembershipRouteImport } from './routes/membership'
 import { Route as JournalRouteImport } from './routes/journal'
+import { Route as HuntingServicesRouteImport } from './routes/hunting-services'
+import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as ExperienceRouteImport } from './routes/experience'
 import { Route as EstimatorRouteImport } from './routes/estimator'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ConservationRouteImport } from './routes/conservation'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiCheckoutRouteImport } from './routes/api/checkout'
 
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnersRoute = PartnersRouteImport.update({
+  id: '/partners',
+  path: '/partners',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OurStoryRoute = OurStoryRouteImport.update({
   id: '/our-story',
   path: '/our-story',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MembershipApplyRoute = MembershipApplyRouteImport.update({
+  id: '/membership-apply',
+  path: '/membership-apply',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MembershipRoute = MembershipRouteImport.update({
@@ -36,6 +64,16 @@ const MembershipRoute = MembershipRouteImport.update({
 const JournalRoute = JournalRouteImport.update({
   id: '/journal',
   path: '/journal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HuntingServicesRoute = HuntingServicesRouteImport.update({
+  id: '/hunting-services',
+  path: '/hunting-services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqsRoute = FaqsRouteImport.update({
+  id: '/faqs',
+  path: '/faqs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ExperienceRoute = ExperienceRouteImport.update({
@@ -53,89 +91,162 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ConservationRoute = ConservationRouteImport.update({
+  id: '/conservation',
+  path: '/conservation',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiCheckoutRoute = ApiCheckoutRouteImport.update({
+  id: '/api/checkout',
+  path: '/api/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/conservation': typeof ConservationRoute
   '/contact': typeof ContactRoute
   '/estimator': typeof EstimatorRoute
   '/experience': typeof ExperienceRoute
+  '/faqs': typeof FaqsRoute
+  '/hunting-services': typeof HuntingServicesRoute
   '/journal': typeof JournalRoute
   '/membership': typeof MembershipRoute
+  '/membership-apply': typeof MembershipApplyRoute
   '/our-story': typeof OurStoryRoute
+  '/partners': typeof PartnersRoute
+  '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms': typeof TermsRoute
+  '/api/checkout': typeof ApiCheckoutRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/conservation': typeof ConservationRoute
   '/contact': typeof ContactRoute
   '/estimator': typeof EstimatorRoute
   '/experience': typeof ExperienceRoute
+  '/faqs': typeof FaqsRoute
+  '/hunting-services': typeof HuntingServicesRoute
   '/journal': typeof JournalRoute
   '/membership': typeof MembershipRoute
+  '/membership-apply': typeof MembershipApplyRoute
   '/our-story': typeof OurStoryRoute
+  '/partners': typeof PartnersRoute
+  '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms': typeof TermsRoute
+  '/api/checkout': typeof ApiCheckoutRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/conservation': typeof ConservationRoute
   '/contact': typeof ContactRoute
   '/estimator': typeof EstimatorRoute
   '/experience': typeof ExperienceRoute
+  '/faqs': typeof FaqsRoute
+  '/hunting-services': typeof HuntingServicesRoute
   '/journal': typeof JournalRoute
   '/membership': typeof MembershipRoute
+  '/membership-apply': typeof MembershipApplyRoute
   '/our-story': typeof OurStoryRoute
+  '/partners': typeof PartnersRoute
+  '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms': typeof TermsRoute
+  '/api/checkout': typeof ApiCheckoutRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/conservation'
     | '/contact'
     | '/estimator'
     | '/experience'
+    | '/faqs'
+    | '/hunting-services'
     | '/journal'
     | '/membership'
+    | '/membership-apply'
     | '/our-story'
+    | '/partners'
+    | '/privacy'
     | '/sitemap.xml'
+    | '/terms'
+    | '/api/checkout'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/conservation'
     | '/contact'
     | '/estimator'
     | '/experience'
+    | '/faqs'
+    | '/hunting-services'
     | '/journal'
     | '/membership'
+    | '/membership-apply'
     | '/our-story'
+    | '/partners'
+    | '/privacy'
     | '/sitemap.xml'
+    | '/terms'
+    | '/api/checkout'
   id:
     | '__root__'
     | '/'
+    | '/conservation'
     | '/contact'
     | '/estimator'
     | '/experience'
+    | '/faqs'
+    | '/hunting-services'
     | '/journal'
     | '/membership'
+    | '/membership-apply'
     | '/our-story'
+    | '/partners'
+    | '/privacy'
     | '/sitemap.xml'
+    | '/terms'
+    | '/api/checkout'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ConservationRoute: typeof ConservationRoute
   ContactRoute: typeof ContactRoute
   EstimatorRoute: typeof EstimatorRoute
   ExperienceRoute: typeof ExperienceRoute
+  FaqsRoute: typeof FaqsRoute
+  HuntingServicesRoute: typeof HuntingServicesRoute
   JournalRoute: typeof JournalRoute
   MembershipRoute: typeof MembershipRoute
+  MembershipApplyRoute: typeof MembershipApplyRoute
   OurStoryRoute: typeof OurStoryRoute
+  PartnersRoute: typeof PartnersRoute
+  PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  TermsRoute: typeof TermsRoute
+  ApiCheckoutRoute: typeof ApiCheckoutRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
@@ -143,11 +254,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partners': {
+      id: '/partners'
+      path: '/partners'
+      fullPath: '/partners'
+      preLoaderRoute: typeof PartnersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/our-story': {
       id: '/our-story'
       path: '/our-story'
       fullPath: '/our-story'
       preLoaderRoute: typeof OurStoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/membership-apply': {
+      id: '/membership-apply'
+      path: '/membership-apply'
+      fullPath: '/membership-apply'
+      preLoaderRoute: typeof MembershipApplyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/membership': {
@@ -162,6 +294,20 @@ declare module '@tanstack/react-router' {
       path: '/journal'
       fullPath: '/journal'
       preLoaderRoute: typeof JournalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hunting-services': {
+      id: '/hunting-services'
+      path: '/hunting-services'
+      fullPath: '/hunting-services'
+      preLoaderRoute: typeof HuntingServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faqs': {
+      id: '/faqs'
+      path: '/faqs'
+      fullPath: '/faqs'
+      preLoaderRoute: typeof FaqsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/experience': {
@@ -185,6 +331,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/conservation': {
+      id: '/conservation'
+      path: '/conservation'
+      fullPath: '/conservation'
+      preLoaderRoute: typeof ConservationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -192,18 +345,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/checkout': {
+      id: '/api/checkout'
+      path: '/api/checkout'
+      fullPath: '/api/checkout'
+      preLoaderRoute: typeof ApiCheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ConservationRoute: ConservationRoute,
   ContactRoute: ContactRoute,
   EstimatorRoute: EstimatorRoute,
   ExperienceRoute: ExperienceRoute,
+  FaqsRoute: FaqsRoute,
+  HuntingServicesRoute: HuntingServicesRoute,
   JournalRoute: JournalRoute,
   MembershipRoute: MembershipRoute,
+  MembershipApplyRoute: MembershipApplyRoute,
   OurStoryRoute: OurStoryRoute,
+  PartnersRoute: PartnersRoute,
+  PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  TermsRoute: TermsRoute,
+  ApiCheckoutRoute: ApiCheckoutRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
