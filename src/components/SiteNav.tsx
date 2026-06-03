@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import logo from "@/assets/logo.png";
+import logoAsset from "@/assets/tt-crest.png.asset.json";
+const logo = logoAsset.url;
 
 const leftLinks = [
   { to: "/", label: "Welcome" },
@@ -59,15 +60,12 @@ export function SiteNav() {
         </button>
 
         {/* Centered logo */}
-        <Link to="/" className="flex flex-col items-center group">
+        <Link to="/" className="flex items-center group" aria-label="Top Trackers — Home">
           <img
             src={logo}
-            alt="Top Trackers crest"
-            className="h-14 w-14 md:h-16 md:w-16 object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] transition-transform duration-500 group-hover:rotate-[8deg]"
+            alt="Top Trackers"
+            className="h-14 w-14 md:h-[68px] md:w-[68px] object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] transition-transform duration-500 group-hover:rotate-[6deg]"
           />
-          <span className="hidden md:block font-display text-bone text-[10px] tracking-[0.4em] mt-1">
-            TOP TRACKERS
-          </span>
         </Link>
 
         {/* Right links (desktop) */}

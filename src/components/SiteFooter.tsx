@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { MapPin, Phone, Mail, Instagram, Facebook, Youtube } from "lucide-react";
-import logo from "@/assets/logo.png";
+import logoAsset from "@/assets/tt-crest.png.asset.json";
+const logo = logoAsset.url;
 import { NewsletterForm } from "@/components/NewsletterForm";
 
 export function SiteFooter() {
