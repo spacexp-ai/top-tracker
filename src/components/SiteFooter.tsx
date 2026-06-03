@@ -63,6 +63,12 @@ export function SiteFooter() {
             </ul>
           </div>
         </div>
+
+        <div className="mt-16 pt-6 border-t border-bone/10 flex flex-col md:flex-row justify-between gap-3 text-xs text-bone/50">
+          <p>© {new Date().getFullYear()} Top Trackers. All rights reserved.</p>
+          <p className="tracking-[0.2em] uppercase">Ethical Hunting · Conservation Heritage</p>
+        </div>
+      </div>
     </footer>
   );
 }
