@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { MapPin, Phone, Mail, Instagram, Facebook, Youtube } from "lucide-react";
-import logoAsset from "@/assets/tt-crest.png.asset.json";
+import logoAsset from "@/assets/tt-logo-crest.png.asset.json";
 const logo = logoAsset.url;
 import { NewsletterForm } from "@/components/NewsletterForm";
 
@@ -12,7 +12,7 @@ export function SiteFooter() {
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
             <Link to="/" className="inline-block mb-6">
-              <img src={logo} alt="Top Trackers" className="h-20 w-20 object-contain" />
+              <img src={logo} alt="Top Trackers Safari & Hunting Club" className="h-24 w-24 md:h-28 md:w-28 object-contain" />
             </Link>
             <p className="font-serif text-lg text-bone/70 max-w-md leading-relaxed">
               The ancient art of the African chase, met with the quiet confidence of a private membership.
