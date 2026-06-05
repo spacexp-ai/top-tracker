@@ -14,16 +14,213 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      bookings: {
+        Row: {
+          camp_tier: string | null
+          created_at: string
+          current_step: number
+          end_date: string | null
+          id: string
+          kit: Json
+          notes: string | null
+          party_size: number
+          ph_id: string | null
+          species_id: string | null
+          start_date: string | null
+          status: Database["public"]["Enums"]["booking_status"]
+          total_estimate_usd: number | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          camp_tier?: string | null
+          created_at?: string
+          current_step?: number
+          end_date?: string | null
+          id?: string
+          kit?: Json
+          notes?: string | null
+          party_size?: number
+          ph_id?: string | null
+          species_id?: string | null
+          start_date?: string | null
+          status?: Database["public"]["Enums"]["booking_status"]
+          total_estimate_usd?: number | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          camp_tier?: string | null
+          created_at?: string
+          current_step?: number
+          end_date?: string | null
+          id?: string
+          kit?: Json
+          notes?: string | null
+          party_size?: number
+          ph_id?: string | null
+          species_id?: string | null
+          start_date?: string | null
+          status?: Database["public"]["Enums"]["booking_status"]
+          total_estimate_usd?: number | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bookings_ph_id_fkey"
+            columns: ["ph_id"]
+            isOneToOne: false
+            referencedRelation: "professional_hunters"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "bookings_species_id_fkey"
+            columns: ["species_id"]
+            isOneToOne: false
+            referencedRelation: "species"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      professional_hunters: {
+        Row: {
+          active: boolean
+          bio: string | null
+          created_at: string
+          id: string
+          name: string
+          photo_url: string | null
+          specialties: string[]
+          years_experience: number
+        }
+        Insert: {
+          active?: boolean
+          bio?: string | null
+          created_at?: string
+          id?: string
+          name: string
+          photo_url?: string | null
+          specialties?: string[]
+          years_experience?: number
+        }
+        Update: {
+          active?: boolean
+          bio?: string | null
+          created_at?: string
+          id?: string
+          name?: string
+          photo_url?: string | null
+          specialties?: string[]
+          years_experience?: number
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          country: string | null
+          created_at: string
+          display_name: string | null
+          id: string
+          tier: Database["public"]["Enums"]["app_role"]
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          country?: string | null
+          created_at?: string
+          display_name?: string | null
+          id: string
+          tier?: Database["public"]["Enums"]["app_role"]
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          country?: string | null
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          tier?: Database["public"]["Enums"]["app_role"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      species: {
+        Row: {
+          base_price_usd: number
+          concession: string
+          created_at: string
+          description: string | null
+          emoji: string | null
+          id: string
+          name: string
+          season_months: number[]
+          slug: string
+        }
+        Insert: {
+          base_price_usd: number
+          concession?: string
+          created_at?: string
+          description?: string | null
+          emoji?: string | null
+          id?: string
+          name: string
+          season_months?: number[]
+          slug: string
+        }
+        Update: {
+          base_price_usd?: number
+          concession?: string
+          created_at?: string
+          description?: string | null
+          emoji?: string | null
+          id?: string
+          name?: string
+          season_months?: number[]
+          slug?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "observer" | "tracker" | "member" | "admin"
+      booking_status:
+        | "draft"
+        | "submitted"
+        | "confirmed"
+        | "completed"
+        | "cancelled"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +347,15 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["observer", "tracker", "member", "admin"],
+      booking_status: [
+        "draft",
+        "submitted",
+        "confirmed",
+        "completed",
+        "cancelled",
+      ],
+    },
   },
 } as const
