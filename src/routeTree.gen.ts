@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PartnersRouteImport } from './routes/partners'
 import { Route as OurStoryRouteImport } from './routes/our-story'
@@ -23,8 +24,14 @@ import { Route as ExperienceRouteImport } from './routes/experience'
 import { Route as EstimatorRouteImport } from './routes/estimator'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ConservationRouteImport } from './routes/conservation'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiCheckoutRouteImport } from './routes/api/checkout'
+import { Route as AuthenticatedPortalRouteImport } from './routes/_authenticated/portal'
+import { Route as AuthenticatedPortalHuntsRouteImport } from './routes/_authenticated/portal.hunts'
+import { Route as AuthenticatedPortalBookRouteImport } from './routes/_authenticated/portal.book'
+import { Route as AuthenticatedPortalAccountRouteImport } from './routes/_authenticated/portal.account'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -34,6 +41,11 @@ const TermsRoute = TermsRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -96,6 +108,15 @@ const ConservationRoute = ConservationRouteImport.update({
   path: '/conservation',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -106,9 +127,32 @@ const ApiCheckoutRoute = ApiCheckoutRouteImport.update({
   path: '/api/checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedPortalRoute = AuthenticatedPortalRouteImport.update({
+  id: '/portal',
+  path: '/portal',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedPortalHuntsRoute =
+  AuthenticatedPortalHuntsRouteImport.update({
+    id: '/hunts',
+    path: '/hunts',
+    getParentRoute: () => AuthenticatedPortalRoute,
+  } as any)
+const AuthenticatedPortalBookRoute = AuthenticatedPortalBookRouteImport.update({
+  id: '/book',
+  path: '/book',
+  getParentRoute: () => AuthenticatedPortalRoute,
+} as any)
+const AuthenticatedPortalAccountRoute =
+  AuthenticatedPortalAccountRouteImport.update({
+    id: '/account',
+    path: '/account',
+    getParentRoute: () => AuthenticatedPortalRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/conservation': typeof ConservationRoute
   '/contact': typeof ContactRoute
   '/estimator': typeof EstimatorRoute
@@ -121,12 +165,18 @@ export interface FileRoutesByFullPath {
   '/our-story': typeof OurStoryRoute
   '/partners': typeof PartnersRoute
   '/privacy': typeof PrivacyRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/portal': typeof AuthenticatedPortalRouteWithChildren
   '/api/checkout': typeof ApiCheckoutRoute
+  '/portal/account': typeof AuthenticatedPortalAccountRoute
+  '/portal/book': typeof AuthenticatedPortalBookRoute
+  '/portal/hunts': typeof AuthenticatedPortalHuntsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/conservation': typeof ConservationRoute
   '/contact': typeof ContactRoute
   '/estimator': typeof EstimatorRoute
@@ -139,13 +189,20 @@ export interface FileRoutesByTo {
   '/our-story': typeof OurStoryRoute
   '/partners': typeof PartnersRoute
   '/privacy': typeof PrivacyRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/portal': typeof AuthenticatedPortalRouteWithChildren
   '/api/checkout': typeof ApiCheckoutRoute
+  '/portal/account': typeof AuthenticatedPortalAccountRoute
+  '/portal/book': typeof AuthenticatedPortalBookRoute
+  '/portal/hunts': typeof AuthenticatedPortalHuntsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
   '/conservation': typeof ConservationRoute
   '/contact': typeof ContactRoute
   '/estimator': typeof EstimatorRoute
@@ -158,14 +215,20 @@ export interface FileRoutesById {
   '/our-story': typeof OurStoryRoute
   '/partners': typeof PartnersRoute
   '/privacy': typeof PrivacyRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/_authenticated/portal': typeof AuthenticatedPortalRouteWithChildren
   '/api/checkout': typeof ApiCheckoutRoute
+  '/_authenticated/portal/account': typeof AuthenticatedPortalAccountRoute
+  '/_authenticated/portal/book': typeof AuthenticatedPortalBookRoute
+  '/_authenticated/portal/hunts': typeof AuthenticatedPortalHuntsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/auth'
     | '/conservation'
     | '/contact'
     | '/estimator'
@@ -178,12 +241,18 @@ export interface FileRouteTypes {
     | '/our-story'
     | '/partners'
     | '/privacy'
+    | '/reset-password'
     | '/sitemap.xml'
     | '/terms'
+    | '/portal'
     | '/api/checkout'
+    | '/portal/account'
+    | '/portal/book'
+    | '/portal/hunts'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/auth'
     | '/conservation'
     | '/contact'
     | '/estimator'
@@ -196,12 +265,19 @@ export interface FileRouteTypes {
     | '/our-story'
     | '/partners'
     | '/privacy'
+    | '/reset-password'
     | '/sitemap.xml'
     | '/terms'
+    | '/portal'
     | '/api/checkout'
+    | '/portal/account'
+    | '/portal/book'
+    | '/portal/hunts'
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
+    | '/auth'
     | '/conservation'
     | '/contact'
     | '/estimator'
@@ -214,13 +290,20 @@ export interface FileRouteTypes {
     | '/our-story'
     | '/partners'
     | '/privacy'
+    | '/reset-password'
     | '/sitemap.xml'
     | '/terms'
+    | '/_authenticated/portal'
     | '/api/checkout'
+    | '/_authenticated/portal/account'
+    | '/_authenticated/portal/book'
+    | '/_authenticated/portal/hunts'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
   ConservationRoute: typeof ConservationRoute
   ContactRoute: typeof ContactRoute
   EstimatorRoute: typeof EstimatorRoute
@@ -233,6 +316,7 @@ export interface RootRouteChildren {
   OurStoryRoute: typeof OurStoryRoute
   PartnersRoute: typeof PartnersRoute
   PrivacyRoute: typeof PrivacyRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   ApiCheckoutRoute: typeof ApiCheckoutRoute
@@ -252,6 +336,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -338,6 +429,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ConservationRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -352,11 +457,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiCheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/portal': {
+      id: '/_authenticated/portal'
+      path: '/portal'
+      fullPath: '/portal'
+      preLoaderRoute: typeof AuthenticatedPortalRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/portal/hunts': {
+      id: '/_authenticated/portal/hunts'
+      path: '/hunts'
+      fullPath: '/portal/hunts'
+      preLoaderRoute: typeof AuthenticatedPortalHuntsRouteImport
+      parentRoute: typeof AuthenticatedPortalRoute
+    }
+    '/_authenticated/portal/book': {
+      id: '/_authenticated/portal/book'
+      path: '/book'
+      fullPath: '/portal/book'
+      preLoaderRoute: typeof AuthenticatedPortalBookRouteImport
+      parentRoute: typeof AuthenticatedPortalRoute
+    }
+    '/_authenticated/portal/account': {
+      id: '/_authenticated/portal/account'
+      path: '/account'
+      fullPath: '/portal/account'
+      preLoaderRoute: typeof AuthenticatedPortalAccountRouteImport
+      parentRoute: typeof AuthenticatedPortalRoute
+    }
   }
 }
 
+interface AuthenticatedPortalRouteChildren {
+  AuthenticatedPortalAccountRoute: typeof AuthenticatedPortalAccountRoute
+  AuthenticatedPortalBookRoute: typeof AuthenticatedPortalBookRoute
+  AuthenticatedPortalHuntsRoute: typeof AuthenticatedPortalHuntsRoute
+}
+
+const AuthenticatedPortalRouteChildren: AuthenticatedPortalRouteChildren = {
+  AuthenticatedPortalAccountRoute: AuthenticatedPortalAccountRoute,
+  AuthenticatedPortalBookRoute: AuthenticatedPortalBookRoute,
+  AuthenticatedPortalHuntsRoute: AuthenticatedPortalHuntsRoute,
+}
+
+const AuthenticatedPortalRouteWithChildren =
+  AuthenticatedPortalRoute._addFileChildren(AuthenticatedPortalRouteChildren)
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedPortalRoute: typeof AuthenticatedPortalRouteWithChildren
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedPortalRoute: AuthenticatedPortalRouteWithChildren,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
   ConservationRoute: ConservationRoute,
   ContactRoute: ContactRoute,
   EstimatorRoute: EstimatorRoute,
@@ -369,6 +530,7 @@ const rootRouteChildren: RootRouteChildren = {
   OurStoryRoute: OurStoryRoute,
   PartnersRoute: PartnersRoute,
   PrivacyRoute: PrivacyRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   ApiCheckoutRoute: ApiCheckoutRoute,
@@ -376,13 +538,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
