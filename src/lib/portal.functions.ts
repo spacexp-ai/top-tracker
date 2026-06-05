@@ -33,7 +33,7 @@ const bookingSchema = z.object({
   end_date: z.string().nullable().optional(),
   party_size: z.number().int().min(1).max(8).optional(),
   camp_tier: z.string().max(40).nullable().optional(),
-  kit: z.record(z.string(), z.unknown()).optional(),
+  kit: z.any().optional(),
   notes: z.string().max(2000).nullable().optional(),
   total_estimate_usd: z.number().int().nullable().optional(),
   current_step: z.number().int().min(1).max(6).optional(),
