@@ -162,8 +162,8 @@ function Book() {
               <div className="bg-[#1a1a1a] border border-[#3d3d3d] p-3 pointer-events-auto">
                 <Calendar
                   mode="range"
-                  selected={range as { from?: Date; to?: Date }}
-                  onSelect={(r) => setRange(r ?? {})}
+                  selected={range.from ? { from: range.from, to: range.to } : undefined}
+                  onSelect={(r) => setRange(r ? { from: r.from, to: r.to } : {})}
                   disabled={(d) => d < new Date(new Date().toDateString())}
                   numberOfMonths={1}
                   className="pointer-events-auto"
